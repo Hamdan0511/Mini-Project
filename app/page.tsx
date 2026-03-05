@@ -11,6 +11,7 @@ import Navigation from '@/components/Navigation'
 import PageWrapper from '@/components/PageWrapper'
 import ChatBox from '@/components/ChatBox'
 
+
 const Scene = dynamic(() => import('@/components/RealisticEarth2050'), { ssr: false })
 
 interface GPS {

@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { parse } from 'exifr'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 
 interface ImageUploadProps {
   onImageUpload: (file: File, gps?: { lat: number; lng: number }) => void
@@ -132,9 +133,11 @@ export default function ImageUpload({ onImageUpload }: ImageUploadProps) {
                 className="text-center"
               >
                 <div className="relative w-64 h-40 mx-auto mb-4 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={preview}
                     alt="Preview"
+                    width={256}
+                    height={160}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
