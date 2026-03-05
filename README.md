@@ -1,4 +1,4 @@
-
+﻿
 # EcoEvaluator 🌍
 
 EcoEvaluator is a cutting-edge web application that bridges the gap between environmental consciousness and property valuation. Using advanced AI, real-time environmental data, and stunning 3D visualizations, it helps users understand their land's ecological footprint and future value.
@@ -267,4 +267,3 @@ For support, email info@ecoevaluator.com or join our Discord community.
 ---
 
 **Built with ❤️ for a sustainable future** 🌱
->>>>>>> aa61d0f (fixed eslint apostrophe error)
