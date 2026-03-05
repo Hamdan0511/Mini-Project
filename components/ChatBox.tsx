@@ -1,17 +1,9 @@
-'use client'
+      'use client' 
 
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import * as exifr from 'exifr'
 
-/**
- * Enhanced ChatBox for EcoBot
- * - Persists messages to localStorage
- * - Upload / EXIF extraction
- * - Sends queries to /api/assistant (preferred) with coords when available
- * - Falls back to /api/environment + /api/value if assistant fails
- * - Voice input, quick replies, retry, copy answer
- */
 
 type Sender = 'user' | 'ecobot'
 type Payload = {
@@ -39,7 +31,7 @@ export default function ChatBox() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       return raw ? (JSON.parse(raw) as Message[]) : []
-    } catch {
+    } catch {  
       return []
     }
   })

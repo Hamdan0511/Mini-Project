@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation'
 interface NavigationProps {
   onNewAnalysis?: () => void
   showNewAnalysisButton?: boolean
+
 }
 
 export default function Navigation({ onNewAnalysis, showNewAnalysisButton = false }: NavigationProps) {

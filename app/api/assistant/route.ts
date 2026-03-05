@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
-  let query: string = ''
+  let query: string = ''  
   let coords: any
   let environmentSnapshot: any
   let valueData: any
   let actualCoords: any
 
-  try {
+  try {       
     const body = await request.json()
     query = body.query
     coords = body.coords
