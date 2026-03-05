@@ -76,10 +76,12 @@ export default function SearchPage() {
     async function fetchResults() {
       setLoading(true)
       setError(null)
+
       try {
         const urlParams = new URLSearchParams(queryParams).toString()
         const res = await fetch(`/api/search?${urlParams}`)
         const json = await res.json()
+
         if (!res.ok || json.error) {
           setError(json.message || 'Failed to fetch search results.')
           setData(null)
@@ -93,6 +95,7 @@ export default function SearchPage() {
         setLoading(false)
       }
     }
+
     fetchResults()
   }, [searchParams])
 
@@ -114,24 +117,44 @@ export default function SearchPage() {
 
   return (
     <div className="flex min-h-screen bg-dark-bg text-white">
-      {/* Filter Pane */}
+
+      {/* Filters */}
       <aside className="w-1/4 p-4 border-r border-gray-700 sticky top-0 h-screen overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Filters</h2>
-        {/* TODO: Implement filter controls */}
-        <p>Price Range: {data.filters.price.min} - {data.filters.price.max} {data.filters.price.currency}</p>
-        <p>Property Types: {data.filters.property_types.join(', ')}</p>
-        <p>Bedrooms: {data.filters.bedrooms.join(', ')}</p>
-        <p>Areas: {data.filters.areas.join(', ')}</p>
+
+        <p>
+          Price Range: {data.filters.price.min} - {data.filters.price.max} {data.filters.price.currency}
+        </p>
+
+        <p>
+          Property Types: {data.filters.property_types.join(', ')}
+        </p>
+
+        <p>
+          Bedrooms: {data.filters.bedrooms.join(', ')}
+        </p>
+
+        <p>
+          Areas: {data.filters.areas.join(', ')}
+        </p>
       </aside>
 
-      {/* Results Grid */}
+      {/* Results */}
       <main className="flex-1 p-4 overflow-y-auto">
+
         <h1 className="text-2xl font-bold mb-6">
-          Results for "{data.meta.query}" in {data.meta.city} ({data.meta.total_results} listings)
+          Results for &quot;{data.meta.query}&quot; in {data.meta.city} ({data.meta.total_results} listings)
         </h1>
+
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+
           {data.results.map((property) => (
-            <div key={property.id} className="bg-gray-900 rounded-lg p-4 shadow-lg">
+
+            <div
+              key={property.id}
+              className="bg-gray-900 rounded-lg p-4 shadow-lg"
+            >
+
               <Image
                 src={property.images?.[0] || '/placeholder.png'}
                 alt={property.title}
@@ -139,11 +162,21 @@ export default function SearchPage() {
                 height={192}
                 className="w-full h-48 object-cover rounded-md mb-2"
               />
-              <h3 className="font-semibold text-lg">{property.title}</h3>
-              <p className="text-sm text-gray-300">{property.description}</p>
-              <p className="mt-2 font-bold text-green-400">
-                {property.price_display || `${property.currency} ${property.price.toLocaleString()}`}
+
+              <h3 className="font-semibold text-lg">
+                {property.title}
+              </h3>
+
+              <p className="text-sm text-gray-300">
+                {property.description}
               </p>
+
+              <p className="mt-2 font-bold text-green-400">
+                {property.price_display ||
+                  `${property.currency} ${property.price.toLocaleString()}`
+                }
+              </p>
+
               <a
                 href={property.listing_url}
                 target="_blank"
@@ -152,10 +185,13 @@ export default function SearchPage() {
               >
                 View Listing
               </a>
+
             </div>
+
           ))}
+
         </div>
-        {/* TODO: Pagination controls */}
+
       </main>
     </div>
   )
